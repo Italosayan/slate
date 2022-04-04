@@ -25,221 +25,283 @@ meta:
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+¡Bienvenido a la API de Lula! Puede usar nuestra API para acceder a nuestros endpoints. Asi podrá conseguir información sobre pisos, contactos, llamadas y mensajes en nuestra base de datos.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+¡Tenemos enlaces de lenguaje en Shell, Ruby, Python y JavaScript! Puede ver ejemplos de código en el área oscura a la derecha y puede cambiar el lenguaje de programación de los ejemplos con las pestañas en la parte superior derecha.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Autenticación
 
-> To authorize, use this code:
+> Para ingresar use el siguiente código
 
 ```ruby
-require 'kittn'
+require 'lulachat'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = lulachat::APIClient.authorize!('api_key')
 ```
 
 ```python
-import kittn
+import lulachat
 
-api = kittn.authorize('meowmeowmeow')
+api = lulachat.authorize('api_key')
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+curl "http://lula.chat/api" \
+  -H "Authorization: api_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const lulachat = require('lulachat');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = lulachat.authorize('api_key');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Replace `api_key` con su API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Lula utiliza API keys para dar acceso a nuestros datos. Para obtener una key por favor llenar el formulario de contactos en el siguiente enlace. [Lula portal](https://lula.chat/index#contact).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+# Principales entidades
 
-`Authorization: meowmeowmeow`
+* Contacto: Usuario que ha llamado preguntando por información de un piso. Nos provee su información de contacto al llenar el formulario de la cita.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+* Citas: Tiempo y lugar que se asigna a un agente inmobiliario y usuario.
 
-# Kittens
+* Pisos: Dirección donde se concretan las citas. 
 
-## Get All Kittens
+* Llamadas: Evento que un usuario ejecuta al contactar a lula para reservar una cita. La llamada se da antes de la cita.
+
+
+
+# Contactos
+
+## Obtener mis contactos
 
 ```ruby
-require 'kittn'
+require 'lulachat'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api = lulachat::APIClient.authorize!('api_key')
+api.lulachat.get_contacts
 ```
 
 ```python
-import kittn
+import lulachat
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = lulachat.authorize('api_key')
+api.lulachat.get_contacts()
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl "http://lula.chat/api/contacts" \
+  -H "Authorization: api_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const lulachat = require('lulachat');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = lulachat.authorize('api_key');
+let lulachat = api.lulachat.get_contacts();
 ```
 
-> The above command returns JSON structured like this:
+> El comando anterior devuelve el siguiente JSON:
 
 ```json
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "name": "Jonathan",
+    "last_name":"Diaz",
+    "email": "jdiaz@gmail.com",
+    "mobile": "+34506128420",
+    "aval": "Nómina",
+    "perfil": "Personal"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "Daniel",
+    "last_name":"Gonzales",
+    "email": "dgonzales@gmail.com",
+    "mobile": "+34506483295",
+    "aval": "Ahorros",
+    "perfil": "Pareja"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+Este endpoint pide todos los contactos de la cuenta.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://lula.chat/api/contacts`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+# Citas
 
-## Get a Specific Kitten
+## Obtener mis citas
 
 ```ruby
-require 'kittn'
+require 'lulachat'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+api = lulachat::APIClient.authorize!('api_key')
+api.lulachat.get_citas
 ```
 
 ```python
-import kittn
+import lulachat
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api = lulachat.authorize('api_key')
+api.lulachat.get_citas()
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl "http://lula.chat/api/citas" \
+  -H "Authorization: api_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const lulachat = require('lulachat');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = lulachat.authorize('api_key');
+let lulachat = api.lulachat.get_citas();
 ```
 
-> The above command returns JSON structured like this:
+> El comando anterior devuelve el siguiente JSON:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+  {
+    "cita_id": 1,
+    "contact_id":1,
+    "piso_id":1,
+    "datetime":"2022-01-01 01:01:01"
+  },
+  {
+    "cita_id": 2,
+    "contact_id":2,
+    "piso_id":1,
+    "datetime":"2022-01-02 01:01:01"
+  }
+]
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Este endpoint recupera todas las citas de la cuenta.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://lula.chat/api/citas`
 
-### URL Parameters
+# Pisos
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
+## Obtener datos de mis pisos 
 
 ```ruby
-require 'kittn'
+require 'lulachat'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+api = lulachat::APIClient.authorize!('api_key')
+api.lulachat.get_pisos
 ```
 
 ```python
-import kittn
+import lulachat
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+api = lulachat.authorize('api_key')
+api.lulachat.get_pisos()
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl "http://lula.chat/api/pisos" \
+  -H "Authorization: api_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const lulachat = require('lulachat');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+let api = lulachat.authorize('api_key');
+let lulachat = api.lulachat.get_pisos();
 ```
 
-> The above command returns JSON structured like this:
+> El comando anterior devuelve el siguiente JSON:
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+[
+  {
+    "piso_id": 1,
+    "direccion": "Calle Puigcerda 229",
+    "planta" 3,
+    "puerta": None,
+    "llamadas": 39
+  },
+  {
+    "piso_id": 2,
+    "direccion": "Calle Radas 39",
+    "planta" 2,
+    "puerta": 5,
+    "llamadas": 92
+  }
+]
 ```
 
-This endpoint deletes a specific kitten.
+Este endpoint recupera todos los pisos de la cuenta.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET http://lula.chat/api/pisos`
 
-### URL Parameters
+# Llamadas
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## Obtener las llamadas
 
+```ruby
+require 'lulachat'
+
+api = lulachat::APIClient.authorize!('api_key')
+api.lulachat.get_llamadas
+```
+
+```python
+import lulachat
+
+api = lulachat.authorize('api_key')
+api.lulachat.get_llamadas()
+```
+
+```shell
+curl "http://lula.chat/api/llamadas" \
+  -H "Authorization: api_key"
+```
+
+```javascript
+const lulachat = require('lulachat');
+
+let api = lulachat.authorize('api_key');
+let lulachat = api.lulachat.get_llamadas();
+```
+
+> El comando anterior devuelve el siguiente JSON:
+
+```json
+[
+  {
+    "llamada_id":1,
+    "piso_id": 1,
+    "planta" 3,
+    "puerta": None,
+    "llamadas": 39
+  },
+  {
+    "piso_id": 2,
+    "direccion": "Calle Radas 39",
+    "planta" 2,
+    "puerta": 5,
+    "llamadas": 92
+  }
+]
+```
+
+Este endpoint recupera todos los pisos de la cuenta.
+
+### HTTP Request
+
+`GET http://lula.chat/api/llamadas`
