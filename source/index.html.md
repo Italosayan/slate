@@ -109,22 +109,22 @@ let lulachat = api.lulachat.get_contacts();
 ```json
 [
   {
-    "id": 1,
+    "contact_id": 1,
     "name": "Jonathan",
     "last_name":"Diaz",
     "email": "jdiaz@gmail.com",
     "mobile": "+34506128420",
     "aval": "Nómina",
-    "perfil": "Personal"
+    "profile": "Personal"
   },
   {
-    "id": 2,
+    "contact_id": 2,
     "name": "Daniel",
     "last_name":"Gonzales",
     "email": "dgonzales@gmail.com",
     "mobile": "+34506483295",
     "aval": "Ahorros",
-    "perfil": "Pareja"
+    "profile": "Pareja"
   }
 ]
 ```
@@ -145,18 +145,18 @@ Este endpoint pide todos los contactos de la cuenta.
 require 'lulachat'
 
 api = lulachat::APIClient.authorize!('api_key')
-api.lulachat.get_citas
+api.lulachat.get_appointments
 ```
 
 ```python
 import lulachat
 
 api = lulachat.authorize('api_key')
-api.lulachat.get_citas()
+api.lulachat.get_appointments()
 ```
 
 ```shell
-curl "http://lula.chat/api/citas" \
+curl "http://lula.chat/api/appointments" \
   -H "Authorization: api_key"
 ```
 
@@ -164,7 +164,7 @@ curl "http://lula.chat/api/citas" \
 const lulachat = require('lulachat');
 
 let api = lulachat.authorize('api_key');
-let lulachat = api.lulachat.get_citas();
+let lulachat = api.lulachat.get_appointments();
 ```
 
 > El comando anterior devuelve el siguiente JSON:
@@ -172,15 +172,15 @@ let lulachat = api.lulachat.get_citas();
 ```json
 [
   {
-    "cita_id": 1,
+    "appointment_id": 1,
     "contact_id":1,
-    "piso_id":1,
+    "prop_id":1,
     "datetime":"2022-01-01 01:01:01"
   },
   {
-    "cita_id": 2,
+    "appointment_id": 2,
     "contact_id":2,
-    "piso_id":1,
+    "prop_id":1,
     "datetime":"2022-01-02 01:01:01"
   }
 ]
@@ -190,7 +190,7 @@ Este endpoint recupera todas las citas de la cuenta.
 
 ### HTTP Request
 
-`GET http://lula.chat/api/citas`
+`GET http://lula.chat/api/appointments`
 
 # Pisos
 
@@ -200,18 +200,18 @@ Este endpoint recupera todas las citas de la cuenta.
 require 'lulachat'
 
 api = lulachat::APIClient.authorize!('api_key')
-api.lulachat.get_pisos
+api.lulachat.get_properties
 ```
 
 ```python
 import lulachat
 
 api = lulachat.authorize('api_key')
-api.lulachat.get_pisos()
+api.lulachat.get_properties()
 ```
 
 ```shell
-curl "http://lula.chat/api/pisos" \
+curl "http://lula.chat/api/properties" \
   -H "Authorization: api_key"
 ```
 
@@ -219,7 +219,7 @@ curl "http://lula.chat/api/pisos" \
 const lulachat = require('lulachat');
 
 let api = lulachat.authorize('api_key');
-let lulachat = api.lulachat.get_pisos();
+let lulachat = api.lulachat.get_properties();
 ```
 
 > El comando anterior devuelve el siguiente JSON:
@@ -227,18 +227,18 @@ let lulachat = api.lulachat.get_pisos();
 ```json
 [
   {
-    "piso_id": 1,
-    "direccion": "Calle Puigcerda 229",
-    "planta" 3,
-    "puerta": None,
-    "llamadas": 39
+    "prop_id": 1,
+    "address": "Calle Puigcerda 229",
+    "floor":3,
+    "door": null,
+    "call_count": 39
   },
   {
-    "piso_id": 2,
-    "direccion": "Calle Radas 39",
-    "planta" 2,
-    "puerta": 5,
-    "llamadas": 92
+    "prop_id": 2,
+    "address": "Calle Radas 39",
+    "floor": 2,
+    "door": 5,
+    "call_count": 92
   }
 ]
 ```
@@ -247,7 +247,7 @@ Este endpoint recupera todos los pisos de la cuenta.
 
 ### HTTP Request
 
-`GET http://lula.chat/api/pisos`
+`GET http://lula.chat/api/properties`
 
 # Llamadas
 
@@ -257,18 +257,18 @@ Este endpoint recupera todos los pisos de la cuenta.
 require 'lulachat'
 
 api = lulachat::APIClient.authorize!('api_key')
-api.lulachat.get_llamadas
+api.lulachat.get_calls
 ```
 
 ```python
 import lulachat
 
 api = lulachat.authorize('api_key')
-api.lulachat.get_llamadas()
+api.lulachat.get_calls()
 ```
 
 ```shell
-curl "http://lula.chat/api/llamadas" \
+curl "http://lula.chat/api/calls" \
   -H "Authorization: api_key"
 ```
 
@@ -276,7 +276,7 @@ curl "http://lula.chat/api/llamadas" \
 const lulachat = require('lulachat');
 
 let api = lulachat.authorize('api_key');
-let lulachat = api.lulachat.get_llamadas();
+let lulachat = api.lulachat.get_calls();
 ```
 
 > El comando anterior devuelve el siguiente JSON:
@@ -284,18 +284,14 @@ let lulachat = api.lulachat.get_llamadas();
 ```json
 [
   {
-    "llamada_id":1,
-    "piso_id": 1,
-    "planta" 3,
-    "puerta": None,
-    "llamadas": 39
+    "call_id":12,
+    "prop_id": 4,
+    "contact_id":3
   },
   {
-    "piso_id": 2,
-    "direccion": "Calle Radas 39",
-    "planta" 2,
-    "puerta": 5,
-    "llamadas": 92
+    "call_id":14,
+    "prop_id": 2,
+    "contact_id":1
   }
 ]
 ```
@@ -304,4 +300,4 @@ Este endpoint recupera todos los pisos de la cuenta.
 
 ### HTTP Request
 
-`GET http://lula.chat/api/llamadas`
+`GET http://lula.chat/api/calls`
