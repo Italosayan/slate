@@ -2,7 +2,7 @@ repo_name: Italosayan/slate
 report_id: 0fef3fb05df496e1c88e1c8cd59d3efa
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-31T09:04:11+00:00'
+timestamp: '2024-02-29T19:44:10+00:00'
 requested_by: Italosayan
 provider: github
 branch: main
@@ -207,24 +207,30 @@ tools:
     detected_date: Apr 12
     severity: high
     first_patched: 1.13.4
-  - name: Nokogiri updates packaged libxml2 to v2.10.4 to resolve multiple CVEs
-    cve_id: 
-    cve_url: https://github.com/advisories/GHSA-pxvg-2qj5-37jq
-    detected_date: Apr 12
-    severity: moderate
-    first_patched: 1.14.3
   - name: Update bundled libxml2 to v2.10.3 to resolve multiple CVEs
     cve_id: 
     cve_url: https://github.com/advisories/GHSA-2qc6-mcvw-92cw
     detected_date: Oct 18
     severity: moderate
     first_patched: 1.13.9
+  - name: Nokogiri update packaged libxml2 to v2.12.5 to resolve CVE-2024-25062
+    cve_id: 
+    cve_url: https://github.com/advisories/GHSA-xc9x-jj77-9p9j
+    detected_date: Feb 6
+    severity: moderate
+    first_patched: 1.16.2
   - name: XML Injection in Xerces Java affects Nokogiri
     cve_id: 
     cve_url: https://github.com/advisories/GHSA-xxx9-3xcr-gjj3
     detected_date: Apr 12
     severity: moderate
     first_patched: 1.13.4
+  - name: Nokogiri updates packaged libxml2 to v2.10.4 to resolve multiple CVEs
+    cve_id: 
+    cve_url: https://github.com/advisories/GHSA-pxvg-2qj5-37jq
+    detected_date: Apr 12
+    severity: moderate
+    first_patched: 1.14.3
 - name: redcarpet
   description: A fast, safe and extensible Markdown to
   package_url: https://rubygems.org/redcarpet
